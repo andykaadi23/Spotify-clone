@@ -14,7 +14,7 @@ const theme = createTheme({
   },
 });
 
-function App() {
+const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <div>
