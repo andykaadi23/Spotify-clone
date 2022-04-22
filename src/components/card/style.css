@@ -1,0 +1,29 @@
+.card {
+    display: flex;
+    justify-content: center;
+    margin: 20px 10px;
+}
+
+.container {
+    background-color: #242424;
+    padding: 30px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s ease-out;
+    width: 250px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
+}
+
+.container:hover {
+    background-color: #313131;
+    cursor: pointer;
+}
+
+.container:hover .img {
+    box-shadow: 0 0 15px 3px #242424;
+}

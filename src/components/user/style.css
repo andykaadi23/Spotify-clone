@@ -1,0 +1,9 @@
+.user-pic {
+    height: 50px;
+    width: 50px;
+}
+
+.profile-container {
+    display: flex;
+    align-content: center;
+}

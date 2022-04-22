@@ -1,0 +1,120 @@
+.btn {
+    border: none;
+    background: #1db954;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    box-shadow: 0 4px 0 rgb(16, 119, 50);
+    transition: all 0.2s ease-out;
+    text-align: center;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+.btn:hover {
+    background: rgb(34, 211, 96);
+    transition: none;
+}
+
+.btn:active {
+    box-shadow: none;
+    position: relative;
+    top: 4px;
+    background-color: green;
+}
+
+.btn-login {
+    border: none;
+    background: #1db954;
+    color: white;
+    padding: 8px 12px;
+    align-items: center;
+    margin-top: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    box-shadow: 0 4px 0 rgb(16, 119, 50);
+    transition: all 0.2s ease-out;
+    text-align: center;
+}
+
+.btn-login:hover {
+    background: rgb(34, 211, 96);
+    transition: none;
+}
+
+.btn-login:active {
+    box-shadow: none;
+    position: relative;
+    top: 4px;
+}
+
+.btn-form {
+    border: none;
+    background: #1db954;
+    color: white;
+    padding: 8px 12px;
+    margin-left: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    box-shadow: 0 4px 0 rgb(16, 119, 50);
+    transition: all 0.2s ease-out;
+    text-align: center;
+}
+
+.btn-form:hover {
+    background: rgb(34, 211, 96);
+    transition: none;
+}
+
+.btn-form:active {
+    box-shadow: none;
+    position: relative;
+    top: 4px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-logout {
+    border: none;
+    background: #1db954;
+    color: white;
+    padding: 8px 12px;
+    margin-left: 30px;
+    align-items: center;
+    margin-top: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    box-shadow: 0 4px 0 rgb(16, 119, 50);
+    transition: all 0.2s ease-out;
+    text-align: center;
+}
+
+.btn-logout:hover {
+    background: rgb(34, 211, 96);
+    transition: none;
+}
+
+.btn-logout:active {
+    box-shadow: none;
+    position: relative;
+    top: 4px;
+}

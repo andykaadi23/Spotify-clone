@@ -1,0 +1,32 @@
+.card-music {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(5, minmax(150px, 1fr));
+}
+
+.search_bar {
+    border: 1px solid #bdc3c7;
+    padding: 10px 10px;
+    border-radius: 10px;
+    margin-left: 30px;
+    outline: none;
+}
+
+h1 {
+    text-align: left;
+    margin: 30px 30px;
+}
+
+h3 {
+    text-align: left;
+    margin: 10px 30px;
+}
+
+.grid-playlist {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+.user-container {
+    grid-column-start: 2;
+}
