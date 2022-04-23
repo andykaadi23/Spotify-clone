@@ -2,6 +2,7 @@ import "../../components/button/style.css";
 import { Button } from "@mui/material";
 import { Container } from "@mui/material/";
 import { makeStyles } from "@mui/styles";
+import "../../components/header/style.css"
 
 const UseStyles = makeStyles({
   btnLogin: {
@@ -10,10 +11,12 @@ const UseStyles = makeStyles({
     },
   },
   containerLogin: {
+    height: '100%',
+    overflow: 'hidden',
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 50,
+    marginBottom: 50,
   },
 });
 

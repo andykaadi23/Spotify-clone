@@ -2,14 +2,13 @@ import CardComponent from "../card/index";
 import React, { useState } from "react";
 import axios from "axios";
 import FormPlaylistComponent from "../formPlaylist/index";
-
 import "./style.css";
 import UserComponent from "../user";
 import { TextField } from "@mui/material";
 import { Button, Container, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-
 import SearchIcon from "@mui/icons-material/Search";
+import { useEffect } from 'react';
 
 const UseStyles = makeStyles({
   
@@ -20,9 +19,12 @@ const UseStyles = makeStyles({
     alignContent: "center",
   },
   searchContainer: {
-    display: "flex",
-    
+    display: "flex", 
   },
+  TrackContainer: {
+    paddingLeft: 30,
+    paddingRight: 30
+  }
 });
 
   interface MusicProps {
@@ -46,8 +48,8 @@ const UseStyles = makeStyles({
     name: string;
   }
   
-  const LandingComponent: React.FC = () => {
-    const token = localStorage.getItem("token");
+  const CreatePlaylistComponent: React.FC = () => {
+  const token = localStorage.getItem("token");
   const [search, setSearch] = useState("");
   const [result, setResult] = useState([]);
   const [trackSelect, setSelectedTrack] = useState<string[]>([]);
@@ -84,28 +86,30 @@ const UseStyles = makeStyles({
     setSelectedTrack([...selectedTrack]);
   };
 
-  const getUserId = async () => {
-    try {
-      const response = await axios.get("https://api.spotify.com/v1/me", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-      setUserId(response.data.id);
-      setProfilePic(response.data.images[0].url);
-      setUserName(response.data.display_name);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  getUserId();
+  useEffect(() => {
+    const getUserDetail = async () => {
+      try {
+        const response = await axios.get('https://api.spotify.com/v1/me', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          }
+        });
+        setUserId(response.data.id);
+        setProfilePic(response.data.images[0].url);
+        setUserName(response.data.display_name);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getUserDetail();
+  }, []);
 
   return (
-    <div>
-      <div className="grid-playlist">
+      <div className="playlist-layout">
+        <Container>
+        <div className="grid-playlist">
         <div>
           <Typography 
           variant="h4"
@@ -121,7 +125,6 @@ const UseStyles = makeStyles({
           </Typography>
           <FormPlaylistComponent
             userId={userId}
-            token={`Bearer ${token}`}
             data={trackSelect}
           />
         </div>
@@ -151,7 +154,7 @@ const UseStyles = makeStyles({
               border: 'none',
               color: '#a1a1a1',
               background: '#1f2123',
-              boxShadow: '5px 5px 7px #1c1d1f, -5px -5px 7px #222527',
+              
             }}
             />
             <Button
@@ -171,6 +174,13 @@ const UseStyles = makeStyles({
           </Container>
         </form>
       </Container>
+      </Container> 
+      <br />
+      <Container
+        className={classes.TrackContainer}
+        disableGutters
+        maxWidth={false}
+      >
       <div className="card-music">
         {result.map((music: MusicProps) => (
           <CardComponent
@@ -185,8 +195,9 @@ const UseStyles = makeStyles({
           />
         ))}
       </div>
+      </Container>
     </div>
   );
 };
 
-export default LandingComponent;
+export default CreatePlaylistComponent;

@@ -12,7 +12,6 @@ const AlbumComponent: React.FC<AlbumProps> = (props: AlbumProps) => {
   return (
     <div>
       <Typography 
-      // className={classes.text} 
       variant="h6"
       data-testid="display-artist"
       sx={{
@@ -23,7 +22,6 @@ const AlbumComponent: React.FC<AlbumProps> = (props: AlbumProps) => {
         {artist}
       </Typography>
       <Typography 
-      // className={classes.text} 
       variant="h6"
       data-testid="display-album"
       sx={{

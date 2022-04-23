@@ -1,3 +1,7 @@
+.playlist-layout {
+    min-height: 80vh;
+}
+
 .card-music {
     display: grid;
     grid-gap: 1rem;

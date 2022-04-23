@@ -4,7 +4,8 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import PlaylistPage from "../../pages/playlist/playlist";
+import MyPlaylistPage from "../../pages/myPlaylist/playlist";
+import PlaylistPage from '../landing/index';
 import LoginPage from "../../pages/login/login";
 import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../redux/reducer/reducer";
@@ -57,6 +58,13 @@ const SpotifyRoute = () => {
             <Redirect to="/" />
           ) : (
             <PlaylistPage />
+          )}
+        </Route>
+        <Route path="/my-playlist">
+          {localStorage.getItem('token') === ' ' ? (
+            <Redirect to="/" />
+          ) : (
+            <MyPlaylistPage />
           )}
         </Route>
         <Route path="/">

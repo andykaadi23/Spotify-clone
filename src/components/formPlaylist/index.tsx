@@ -1,9 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { TextField } from "@mui/material";
 import { Button, Typography } from "@mui/material";
-
 import { makeStyles } from "@mui/styles";
 
 const UseStyles = makeStyles({
@@ -16,37 +14,50 @@ const UseStyles = makeStyles({
   },
 });
 
-const FormPlaylistComponent = (props) => {
+interface FormPlaylistProps {
+  userId: string;
+  data: string[];
+}
+
+const FormPlaylistComponent: React.FC<FormPlaylistProps> = (
+  props: FormPlaylistProps
+) => {
   const { userId, data } = props;
-  const token = `Bearer ${useSelector((state) => state.token.token)}`;
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const token = `Bearer ${localStorage.getItem('token')}`;
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const [titleError, setTitleError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
   const minimumTitle = 10;
   const minimumDescription = 20;
   const classes = UseStyles();
 
-  const handleTitle = (e) => {
+  const handleTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
-  const handleDescription = (e) => {
+  const handleDescription = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDescription(e.target.value);
   };
 
-  const addToPlaylist = async (playlistId) => {
+  const handleMyPlaylist = () => {
+    localStorage.getItem('token') === ' '
+      ? alert('Login First!')
+      : (window.location.href = '/my-playlist');
+  };
+
+  const addToPlaylist = async (playlistId: string) => {
     try {
       const response = await axios.post(
         `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
         {
-          uris: data,
+          uris: data
         },
         {
           headers: {
             Authorization: token,
-            "Content-Type": "application/json",
-          },
+            'Content-Type': 'application/json'
+          }
         }
       );
       console.log(response);
@@ -55,7 +66,7 @@ const FormPlaylistComponent = (props) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const endpoint = `https://api.spotify.com/v1/users/${userId}/playlists`;
     const submitPlaylist = () => {
@@ -67,14 +78,14 @@ const FormPlaylistComponent = (props) => {
               name: title,
               description,
               collaborative: false,
-              public: false,
+              public: false
             },
             {
               headers: {
                 Authorization: token,
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              },
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+              }
             }
           )
           .then((response) => {
@@ -90,13 +101,13 @@ const FormPlaylistComponent = (props) => {
 
     if (title.length < minimumTitle) {
       setTitleError(true);
-      alert("Minimum Title 10 Character");
+      alert('Minimum Title 10 Character');
     } else if (description.length < minimumDescription) {
       setDescriptionError(true);
-      alert("Minimum Description 20 Character");
+      alert('Minimum Description 20 Character');
     } else {
       submitPlaylist();
-      alert("Playlist Created!");
+      alert('Playlist Created!');
     }
   };
 
@@ -123,12 +134,12 @@ const FormPlaylistComponent = (props) => {
           error={titleError}
           onChange={handleTitle}
           sx={{
-            marginLeft: 64,
+            marginLeft: 52,
             border: "none",
             color: "#a1a1a1",
             background: "#1f2123",
             width: 400,
-            boxShadow: "5px 5px 7px #1c1d1f, -5px -5px 7px #222527",
+            borderRadius: 3,
           }}
         />
         <Typography
@@ -144,7 +155,6 @@ const FormPlaylistComponent = (props) => {
           Description
         </Typography>
         <TextField
-          className={classes.textField}
           type="text"
           variant="filled"
           color="primary"
@@ -155,12 +165,12 @@ const FormPlaylistComponent = (props) => {
           error={descriptionError}
           onChange={handleDescription}
           sx={{
-            marginLeft: 64,
+            marginLeft: 52,
             border: "none",
             color: "#a1a1a1",
             background: "#1f2123",
             width: 400,
-            boxShadow: "5px 5px 7px #1c1d1f, -5px -5px 7px #222527",
+            borderRadius: 3,
           }}
         />
         <br />
@@ -172,10 +182,23 @@ const FormPlaylistComponent = (props) => {
           size="large"
           sx={{
             marginTop: 3,
-            marginLeft: 64,
+            marginLeft: 52,
           }}
         >
           Create
+        </Button>
+        <Button 
+        onClick={handleMyPlaylist}
+        className={classes.btnSubmit}
+        color="primary"
+        variant="contained"
+        size="large"
+        sx={{
+            marginTop: 3,
+            marginLeft: 52,
+          }}
+        >
+          My Playlist
         </Button>
       </form>
     </div>
